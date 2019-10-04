@@ -1,0 +1,23 @@
+docker run -d --init \
+           -p 192.168.1.24:9000:9000 \
+           -p 192.168.1.24:9090:9090 \
+           -p 192.168.1.24:3483:3483 \
+           -p 192.168.1.24:3483:3483/udp \
+           -v /etc/localtime:/etc/localtime:ro \
+           -v squeezebox1:/srv/squeezebox \
+           -v /mnt/media/music:/srv/music \
+           -h lms1 \
+           --name ubuntu_lms_1 \
+           logitech-media-server
+
+docker run -d --init \
+           -p 192.168.1.25:9000:9000 \
+           -p 192.168.1.25:9090:9090 \
+           -p 192.168.1.25:3483:3483 \
+           -p 192.168.1.25:3483:3483/udp \
+           -v /etc/localtime:/etc/localtime:ro \
+           -v squeezebox2:/srv/squeezebox \
+           -v /mnt/media/music:/srv/music \
+           -h lms2 \
+           --name ubuntu_lms_2 \
+           logitech-media-server
