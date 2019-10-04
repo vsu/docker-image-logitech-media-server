@@ -8,6 +8,7 @@ docker run -d --init \
            -v /mnt/media/music:/srv/music \
            -h lms1 \
            --name ubuntu_lms_1 \
+           --restart always
            logitech-media-server
 
 docker run -d --init \
@@ -20,4 +21,5 @@ docker run -d --init \
            -v /mnt/media/music:/srv/music \
            -h lms2 \
            --name ubuntu_lms_2 \
+           --restart always
            logitech-media-server
