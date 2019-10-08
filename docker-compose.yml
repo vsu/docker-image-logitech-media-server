@@ -1,24 +1,45 @@
-# The "init:" keyword, below, requires either version "2.2"
-# or "2.3".
-version: "2.3"
+
+version: "3.7"
 
 services:
-  lms:
-    image: larsks/logitech-media-server
+  lms_1:
+    image: logitech-media-server
+    ports:
+      - "192.168.1.24:9000:9000"
+      - "192.168.1.24:9090:9090"
+      - "192.168.1.24:3483:3483"
+      - "192.168.1.24:3483:3483/udp"
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - squeezebox:/srv/squeezebox
-      - ${AUDIO_DIR}:/srv/music
+      - squeezebox_lms_1:/srv/squeezebox
+      - music:/srv/music
+    container_name: ubuntu_lms_1
+    hostname: lms_1
+    restart: always
+    init: true
+
+  lms_2:
+    image: logitech-media-server
     ports:
-## uncomment the following line if you want to be able to
-## access the web ui on port 80.
-#     - "80:9000"
-      - "9000:9000"
-      - "9090:9090"
-      - "3483:3483"
-      - "3483:3483/udp"
+      - "192.168.1.25:9000:9000"
+      - "192.168.1.25:9090:9090"
+      - "192.168.1.25:3483:3483"
+      - "192.168.1.25:3483:3483/udp"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - squeezebox_lms_2:/srv/squeezebox
+      - music:/srv/music
+    container_name: ubuntu_lms_2
+    hostname: lms_2
     restart: always
     init: true
 
 volumes:
-  squeezebox:
+  squeezebox_lms_1:
+  squeezebox_lms_2:
+  music:
+    driver: local
+    driver_opts:
+      type: "nfs4"
+      o: "addr=192.168.1.22"
+      device: ":/media/music"

@@ -15,7 +15,7 @@ RUN apt-get update && \
 		lame \
 		sox \
 		libio-socket-ssl-perl \
-                libnet-ssleay-perl \
+		libnet-ssleay-perl \
 		tzdata \
 		&& \
 	apt-get clean
