@@ -1,4 +1,3 @@
-
 version: "3.7"
 
 services:
@@ -40,6 +39,6 @@ volumes:
   music:
     driver: local
     driver_opts:
-      type: "nfs4"
-      o: "addr=192.168.1.22"
-      device: ":/media/music"
+      type: cifs
+      o: "vers=3.0,username=username,password=password"
+      device: "//192.168.1.22/media-ro/music"
