@@ -3,9 +3,11 @@ version: "3.7"
 services:
   lms_1:
     image: logitech-media-server
-    environment:
-      - IP_ADDR=192.168.1.24
-    network_mode: host
+    ports:
+      - "192.168.1.24:9000:9000"
+      - "192.168.1.24:9090:9090"
+      - "192.168.1.24:3483:3483"
+      - "192.168.1.24:3483:3483/udp"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - squeezebox_lms_1:/srv/squeezebox
@@ -17,9 +19,11 @@ services:
 
   lms_2:
     image: logitech-media-server
-    environment:
-      - IP_ADDR=192.168.1.25
-    network_mode: host
+    ports:
+      - "192.168.1.25:9000:9000"
+      - "192.168.1.25:9090:9090"
+      - "192.168.1.25:3483:3483"
+      - "192.168.1.25:3483:3483/udp"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - squeezebox_lms_2:/srv/squeezebox

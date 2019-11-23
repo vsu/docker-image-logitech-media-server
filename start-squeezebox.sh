@@ -14,5 +14,9 @@ fi
 exec squeezeboxserver \
 	--prefsdir $SQUEEZE_VOL/prefs \
 	--logdir $SQUEEZE_VOL/logs \
-	--cachedir $SQUEEZE_VOL/cache "$@"
+	--cachedir $SQUEEZE_VOL/cache \
+        --playeraddr $IP_ADDR \
+        --streamaddr $IP_ADDR \
+        --httpaddr $IP_ADDR \
+        --cliaddr $IP_ADDR "$@"
 
