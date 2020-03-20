@@ -5,7 +5,7 @@ ENV SQUEEZE_VOL /srv/squeezebox
 ENV IP_ADDR 127.0.0.1
 ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
-ENV PACKAGE_VERSION_URL=http://www.mysqueezebox.com/update/?version=7.9.0&revision=1&geturl=1&os=deb
+ENV PACKAGE_VERSION_URL=http://www.mysqueezebox.com/update/?version=7.9.2&revision=1&geturl=1&os=deb
 
 RUN apt-get update && \
 	apt-get -y install \
