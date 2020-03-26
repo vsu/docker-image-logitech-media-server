@@ -3,11 +3,9 @@ version: "3.7"
 services:
   lms_1:
     image: logitech-media-server
-    ports:
-      - "9000:9000"
-      - "9090:9090"
-      - "3483:3483"
-      - "3483:3483/udp"
+    environment:
+      - IP_ADDR=192.168.1.24
+    network_mode: host
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - squeezebox_lms_1:/srv/squeezebox
@@ -17,8 +15,23 @@ services:
     restart: always
     init: true
 
+  lms_2:
+    image: logitech-media-server
+    environment:
+      - IP_ADDR=192.168.1.25
+    network_mode: host
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - squeezebox_lms_2:/srv/squeezebox
+      - music:/srv/music
+    container_name: ubuntu_lms_2
+    hostname: lms_2
+    restart: always
+    init: true
+
 volumes:
   squeezebox_lms_1:
+  squeezebox_lms_2:
   music:
     driver: local
     driver_opts:
